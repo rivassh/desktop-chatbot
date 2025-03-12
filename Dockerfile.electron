@@ -1,0 +1,17 @@
+FROM node:20
+
+# تنظیم مسیر کار
+WORKDIR /app
+
+# نصب Electron و NativePHP
+RUN npm install -g nativephp electron
+
+# کپی فایل‌های پروژه
+COPY . .
+
+# نصب پکیج‌ها
+RUN npm install
+
+# ساخت و اجرای Electron
+RUN npm run build
+CMD ["npx", "electron", "."]
